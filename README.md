@@ -64,9 +64,8 @@ The tests run against SQLite with a fake mailer.
 
 ## Verification status
 
-The backend suite passes with `pytest`, 5 tests. The Angular production build
-succeeds. A manual run against SQLite returned `201` for a new address. A repeat
-returned `409`. An invalid address returned `422`. The `/api` proxy on the
-dev server forwards requests to the backend.
+- `backend/tests` passes 5 of 5 under pytest.
+- `npx ng build` in `frontend` completes without errors.
+- An end-to-end run used MySQL 8.4.13 on port 3307 and the Angular dev server, which proxies `/api` to the backend. A name and address submitted in Chromium returned 201 Created and wrote a row to the subscribers table. The SMTP capture inbox received the confirmation.
 
-MySQL was not exercised in this environment. The browser form was not tested.
+MySQL ran as a local server because this user cannot reach the Docker socket. The screen recording of the run is in `demo/subscribe-demo.mp4`.
